@@ -1,0 +1,29 @@
+List of Classes in EELS Tools GUI (6/24/2016) - Rohan Dhall 
+Arranged as created.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+MAIN GUI:
+		EELS_IntroPage:
+					desktop (root) : contains all data. Stored as local variables si, zlp, dump
+							SI : contains info about spectrum image.
+									filename
+									dir
+									DM3import: structure returned by DM3 Import Function
+									SIcell: contains a cell where each element is a 2 column array containing (x,y) values for the spectrum.
+									processedSIcell: a cell similar to SIcell, after a sequence of operations (as recorded in the variable Dump.txt)
+									DrudeFitCell: contains a two dimensional array, in which each element corresponds to the Fit object to a Drude model.
+									DrudeGofCell: contains a two dimensional array with each element containing the goodness of fit for the EELS spectrum at that position, to a Drude Model.
+									LorentzFitCell: contains a two dimensional array, in which each element corresponds to the Fit object to a Lorentz peak.
+									LorentzGofCell: contains a two dimensional array with each element containing the goodness of fit for the EELS spectrum at that position, to a Lorentz peak.
+
+							ZLP : contains info about zero loss peak.
+									filename
+									dir	
+
+							Dump: a dump folder for random files to be stored
+									dir
+									txt
+
+							Plasmon_Range_Image - nR x nC array with area under Plasmon Spectral Range in current SI
+
+							Display_Image - Image to be displayed

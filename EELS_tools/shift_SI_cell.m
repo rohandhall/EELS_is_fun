@@ -9,6 +9,8 @@ function [ shifted_SI_cell ] = shift_SI_cell( in_SI_cell,zlp_eVmin,zlp_eVmax )
 
 shifted_SI_cell = cell(nR, nC);
 
+h = waitbar(0,'Please wait...');
+
 for r = 1:nR
     for c=1:nC
         %DO STUFF
@@ -17,9 +19,10 @@ for r = 1:nR
         intpts = XYvals(:,2);
         eVpts_shifted = shiftZLP(eVpts, intpts,zlp_eVmin, zlp_eVmax) ;
         shifted_SI_cell{r,c} = [eVpts_shifted, intpts];
+        waitbar( (nC*(r-1) +c)/(nR*nC) );
     end
 end
 
-
+close(h);
 end
 

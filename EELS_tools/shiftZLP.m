@@ -24,7 +24,7 @@ for j = 1:length(eVdata)
     
 end
 
-zlpfit = fit2gauss(eVpts, ipts, floor((length(eVpts) - 1)/2)); %npts set to use all points.
+zlpfit = fit2gauss(eVpts, ipts); 
 eVdata_0 = eVdata - zlpfit.b;
 
 end

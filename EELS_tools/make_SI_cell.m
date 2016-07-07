@@ -7,7 +7,7 @@ function [ SI_cell, ermsg ] = make_SI_cell( dm3_struct )
 
 ermsg = 'NULL';
 
-if strcmp(dm3_struct.zaxis.units, 'eV')
+if strcmp(dm3_struct.zaxis.units, 'eV') % check if it is a spectrum image
     numdata = dm3_struct.image_data;  
     sizedata = size(numdata);
     

@@ -1,4 +1,4 @@
-function [ fitobj, gof ] = fit2gauss( xdata, ydata, npts  )
+function [ fitobj, gof ] = fit2gauss( xdata, ydata  )
 %FIT2GAUSS provides gaussian fit to given data
 %   npts are the number of point on either side of peak max to use for
 %   fitting.
@@ -18,14 +18,7 @@ cstart =  1;
 dstart = 0;
 startpts = [astart, bstart, cstart, dstart];
 
-if pkindex < npts
-    npts = pkindex-1;
-end
-if length(xdata) - pkindex < npts
-    npts = length(xdata) - pkindex;
-end
-
-[fitobj, gof] = fit (xdata(pkindex-npts:pkindex+npts), ydata((pkindex-npts:pkindex+npts)), gaussEqn,'Start', startpts);
+[fitobj, gof] = fit (xdata, ydata, gaussEqn,'Start', startpts);
 
 
 end

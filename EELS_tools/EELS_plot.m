@@ -1,5 +1,5 @@
 function [ output_args ] = EELS_plot( DM3_cell )
-%EELS_PLOT Summary of this function goes here
+%EELS_PLOT Creates UI 
 %   Detailed explanation goes here
 
 

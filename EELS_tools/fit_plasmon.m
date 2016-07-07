@@ -1,4 +1,4 @@
-function [ plasmon_fitob_cell ] = fit_plasmon( shifted_SI_cell, plasmon_min_eV, plasmon_max_eV, FITNPTS )
+function [ plasmon_fitob_cell, gof_cell ] = fit_plasmon( shifted_SI_cell, plasmon_min_eV, plasmon_max_eV,fit_type )
 %FIT_PLASMON this will fit the low loss plasmon peak in a SIcell. 
 %MAKE SURE ZLP SHIFT HAS BEEN PERFORMED!!
 %   It returns an array of fitobjects which have corresponding fitting
@@ -6,10 +6,11 @@ function [ plasmon_fitob_cell ] = fit_plasmon( shifted_SI_cell, plasmon_min_eV, 
 
 [nR, nC] = size(shifted_SI_cell);
 
-fit_type = 'Lorentz';
+%fit_type = 'Lorentz';
 
 plasmon_fitob_cell = cell(nR, nC);
 gof_cell = cell(nR, nC);
+h = waitbar(0,'Please wait...');
 
 for r=1:nR
     for c=1:nC
@@ -23,10 +24,13 @@ for r=1:nR
                 plasmon_int =[plasmon_int; intpts(j)];
             end
         end
-        
-        [plasmon_fitob_cell{r,c} , gof_cell{r,c} ] = fit2peak(plasmon_eV, plasmon_int, FITNPTS, fit_type); 
+        waitbar( (nC*(r-1) +c)/(nR*nC) );
+        [plasmon_fitob_cell{r,c} , gof_cell{r,c}, errm ] = fit2peak(plasmon_eV, plasmon_int, fit_type); 
+        if ~strcmp(errm, 'NULL')
+            errordlg('Error in Fit2Peak');
+        end
     end
 end
-
+close(h);
 end
 
