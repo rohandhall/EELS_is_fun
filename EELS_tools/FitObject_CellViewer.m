@@ -40,9 +40,9 @@ elseif strcmp(model, 'Lorentz')
 end
 
 fig = figure;
-title('Drude Model Fitting Results');
+%title('Drude Model Fitting Results');
 subplot(1,4,1);
-imagesc(amp); colorbar; title('Amplitude');
+    imagesc(amp); colorbar; title('Amplitude');
 subplot(1,4,2);
 imagesc(bkgrnd);colorbar; title('Background');
 subplot(1,4,3);

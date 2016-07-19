@@ -52,6 +52,7 @@ function EELS_IntroPage_OpeningFcn(hObject, eventdata, handles, varargin)
 % handles    structure with handles and user data (see GUIDATA)
 % varargin   command line arguments to EELS_IntroPage (see VARARGIN)
 
+%clear all;
 % Choose default command line output for EELS_IntroPage
 handles.output = hObject;
 
@@ -79,7 +80,7 @@ function selectSI_pushbutton_Callback(hObject, eventdata, handles)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 [fname, fdir] = uigetfile('*.dm3', 'Select DM3 Spectrum Image');
-handles.SI_textbox.String = fname; %To update the textbox display
+handles.SI_textbox.String = strcat(fdir, fname); %To update the textbox display
 si_info.filename = handles.SI_textbox.String; 
 si_info.dir = fdir;
 setappdata(0, 'SI', si_info);%handles.SI contains spectrum image info.
@@ -91,7 +92,7 @@ function selectZLP_pushbutton_Callback(hObject, eventdata, handles)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 [zlpfname, zlpfdir] = uigetfile('*.dm3', 'Select ZLP Spectrum'); 
-handles.ZLP_textbox.String = zlpfname;% update the text box
+handles.ZLP_textbox.String = strcat(zlpfdir, zlpfname);% update the text box
 zlp_info.filename = zlpfname;
 zlp_info.dir = zlpfdir;
 setappdata(0, 'ZLP' ,zlp_info);

@@ -22,7 +22,7 @@ function varargout = EELS_View_Fit(varargin)
 
 % Edit the above text to modify the response to help EELS_View_Fit
 
-% Last Modified by GUIDE v2.5 01-Jul-2016 12:17:59
+% Last Modified by GUIDE v2.5 08-Jul-2016 12:28:49
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -144,7 +144,7 @@ d.txt = dtxt;
 setappdata(0, 'Dump', d);
 %Dump update end
 
-[drudefit, drudegof] = fit_plasmon(shftd_si_cell,min_ev,max_ev,'Drude');
+[drudefit, drudegof] = fit_plasmon(shftd_si_cell,min_ev,max_ev,'Drude', handles.axes2);
 si.DrudeFitCell = drudefit;
 si.DrudeGofCell = drudegof;
 
@@ -161,8 +161,8 @@ dfolder = d.dir;
 %now save the classes, SI, and  Dump 
 fname_SI =strcat(d.dir,'/Spectrum Image Data.mat');
 fname_Dump = strcat(d.dir,'/Dump Data.mat');
-save(fname_SI , 'si');
-save(fname_Dump, 'd');
+save(fname_SI , 'si', '-v7.3');
+save(fname_Dump, 'd', '-v7.3');
 
 
 function plasmon_min_edit_Callback(hObject, eventdata, handles)
@@ -360,8 +360,10 @@ setappdata(0, 'Dump', d);
 shftd_si_cell = si.processedSIcell;
 min_ev = str2double(handles.plasmon_min_edit.String);
 max_ev = str2double(handles.plasmon_max_edit.String);
-[lorentzfit, lorentzgof] = fit_plasmon(shftd_si_cell,min_ev,max_ev,'Lorentz');
+%
+% Replace this section, so you can live update axes2.
+[lorentzfit, lorentzgof] = fit_plasmon(shftd_si_cell,min_ev,max_ev,'Lorentz', handles.axes2);
+%
 si.LorentzFitCell = lorentzfit;
 si.LorentzGofCell = lorentzgof;
 setappdata(0,'SI', si);
-
